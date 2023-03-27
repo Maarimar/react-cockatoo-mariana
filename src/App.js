@@ -51,7 +51,7 @@ function App() {
        <>
       <h1>TO-DO List</h1>
       <AddTodoForm onAddTodo={addTodo} />
-      <p>{addTodo}</p>
+      <p>{TodoList}</p>
       {isLoading ? (
         <span>Loading...</span>
       ) : (
