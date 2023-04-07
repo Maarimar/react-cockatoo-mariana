@@ -2,10 +2,11 @@ import "./App.css";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import { useState, useEffect } from "react";
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+
+const API_ENDPOINT = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Tittle/`;
 
 function App() {
-
-  const API_ENDPOINT = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Tittle/`;
 
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,8 +23,10 @@ function App() {
 
       setTodoList([...result.records]);
       setIsLoading(false);
-    });
-  }, []);
+    })
+    
+  .catch((error) => console.error(error)); 
+},[]);
 
   useEffect(() => {
     if(!isLoading){
@@ -41,16 +44,25 @@ function App() {
   };
 
   return (
-    <>
+    <BrowserRouter>
+    <Routes>
+      <Route path={"/"}
+      element={
+       <>
       <h1>TO-DO List</h1>
       <AddTodoForm onAddTodo={addTodo} />
-      <p>{addTodo}</p>
+      <p>{TodoList}</p>
       {isLoading ? (
         <span>Loading...</span>
       ) : (
         <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
       )}
-    </>
+      </>
+    }
+      />
+      <Route path={"/new"} element={<h1>New Todo List</h1>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
