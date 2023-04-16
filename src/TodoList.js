@@ -3,7 +3,6 @@ import TodoListItem from "./TodoListItem";
 
 
 function TodoList({todoList, onRemoveTodo}) {
-  console.log(todoList);
   return (
       <ul>
         {todoList.map((todo) => {

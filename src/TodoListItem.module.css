@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@500&family=Roboto:wght@300&display=swap');
+.ListItem{
+    color: #393646;
+    padding: 7px;
+}
+
+.x{
+    background-color: #917FB3;
+    color: antiquewhite;
+    border-radius: 6px;
+}
