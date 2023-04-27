@@ -11,10 +11,8 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(process.env.REACT_APP_AIRTABLE_BASE_ID,process.env.REACT_APP_AIRTABLE_API_KEY );
-
   useEffect(() => {
-    fetch(`${API_ENDPOINT}`, {
+    fetch(`${API_ENDPOINT}?sort[0][field]=Title&sort[0][direction]=asc`, {
       method: "GET",
       headers:{
         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
