@@ -1,6 +1,7 @@
 import style from './App.module.css'
 import TodoList from "./components/TodoList";
 import AddTodoForm from "./components/AddTodoForm";
+import NavBar from './components/NavBar';
 import { useState, useEffect } from "react";
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
@@ -11,10 +12,8 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(process.env.REACT_APP_AIRTABLE_BASE_ID,process.env.REACT_APP_AIRTABLE_API_KEY );
-
   useEffect(() => {
-    fetch(`${API_ENDPOINT}`, {
+    fetch(`${API_ENDPOINT}?sort[0][field]=Title&sort[0][direction]=asc`, {
       method: "GET",
       headers:{
         Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
@@ -47,10 +46,22 @@ function App() {
     setTodoList([...todoList, newTodo]);
   };
 
+  
+
   return (
     <BrowserRouter>
     <Routes>
-      <Route path={"/"}
+      <Route path={"/"}>
+        element={
+          <div>
+               <h1>Welcome</h1>
+               <p>Hola esta es mi todo app, es mi proyecto final para coe the dream</p>
+               <NavBar/>
+          </div>
+        }
+      </Route>
+
+      <Route path={"/todo-list"}
       element={
        <div className={style.container}>
       <h1>TO-DO List</h1>
@@ -64,7 +75,7 @@ function App() {
       </div>
     }
       />
-      <Route path={"/new"} element={<h1>New Todo List</h1>}/>
+      <Route path={"/code"} element={<h1>New Todo List</h1>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -27,7 +27,7 @@ return(
 };
 
 InputWithLabel.propTypes={
-onInputWithLabel: PropTypes.func,
+handleTitleChange: PropTypes.func,
 }
 
 export default InputWithLabel;
