@@ -1,6 +1,7 @@
 import style from './App.module.css'
 import TodoList from "./components/TodoList";
 import AddTodoForm from "./components/AddTodoForm";
+import NavBar from './components/NavBar';
 import { useState, useEffect } from "react";
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
@@ -48,7 +49,17 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path={"/"}
+      <Route path={"/"}>
+        element={
+          <div>
+               <h1>Welcome</h1>
+               <p>Hola esta es mi todo app, es mi proyecto final para coe the dream</p>
+               <NavBar/>
+          </div>
+        }
+      </Route>
+
+      <Route path={"/todo-list"}
       element={
        <div className={style.container}>
       <h1>TO-DO List</h1>
