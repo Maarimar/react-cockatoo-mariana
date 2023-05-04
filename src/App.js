@@ -46,6 +46,8 @@ function App() {
     setTodoList([...todoList, newTodo]);
   };
 
+  
+
   return (
     <BrowserRouter>
     <Routes>
@@ -73,7 +75,7 @@ function App() {
       </div>
     }
       />
-      <Route path={"/new"} element={<h1>New Todo List</h1>}/>
+      <Route path={"/code"} element={<h1>New Todo List</h1>}/>
       </Routes>
     </BrowserRouter>
   );
