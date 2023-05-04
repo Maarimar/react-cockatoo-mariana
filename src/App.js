@@ -7,11 +7,13 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 const API_ENDPOINT = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/todo_api`;
 
+
 function App() {
 
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  //GET
   useEffect(() => {
     fetch(`${API_ENDPOINT}?sort[0][field]=Title&sort[0][direction]=asc`, {
       method: "GET",
@@ -30,6 +32,58 @@ function App() {
   .catch((error) => console.error(error)); 
 },[]);
 
+//POST
+
+const addTodo = function (newTodo) {
+  fetch(API_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+    },
+    body: JSON.stringify({
+      records: [
+        {
+          fields: {
+            Title: newTodo.title,
+            Completed: newTodo.completed,
+          },
+        },
+      ],
+    }),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      setTodoList([...todoList, result.records[0]]);
+   
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
+// DELETE
+
+const removeTodo = function (id) {
+
+      const newTodoList = todoList.filter((todo) => todo.id !== id);
+      setTodoList(newTodoList);
+
+      fetch(`${API_ENDPOINT}/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          console.log("Success:", result);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+
+}
 
   useEffect(() => {
     if(!isLoading){
@@ -37,29 +91,25 @@ function App() {
     } 
   }, [todoList, isLoading]);
 
-  const removeTodo = (id) => {
-    const newTodoList = todoList.filter((todo) => todo.id !== id);
-    setTodoList(newTodoList);
-  };
-
-  const addTodo = (newTodo) => {
-    setTodoList([...todoList, newTodo]);
-  };
+  // const removeTodo = (id) => {
+  //   const newTodoList = todoList.filter((todo) => todo.id !== id);
+  //   setTodoList(newTodoList);
+  // };
 
   
 
   return (
     <BrowserRouter>
     <Routes>
-      <Route path={"/"}>
+      <Route path={"/"}
         element={
-          <div>
+          <>
                <h1>Welcome</h1>
                <p>Hola esta es mi todo app, es mi proyecto final para coe the dream</p>
                <NavBar/>
-          </div>
+          </>
         }
-      </Route>
+      />
 
       <Route path={"/todo-list"}
       element={
