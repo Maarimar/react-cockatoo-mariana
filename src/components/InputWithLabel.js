@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-
+import PropTypes from 'prop-types'
 
 const InputWithLabel=({handleTitleChange, todoTitle, children})=>{
 
@@ -26,5 +26,8 @@ return(
 
 };
 
+InputWithLabel.propTypes={
+onInputWithLabel: PropTypes.func,
+}
 
 export default InputWithLabel;
