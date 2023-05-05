@@ -1,28 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@500&family=Roboto:wght@300&display=swap');
-
-
-.ListItem{
-    align-items: center;
-    color: white;
-    padding: 7px;
-    list-style: none;
-    background-color:rgba(151, 65, 252, 0.2);
-    margin:10px;
-    border-radius: 6px;
-    box-shadow: rgba(43, 15, 75, 0.2) 0 15px 30px -5px;
-  
- 
-
-
-}
-
 .button {
     background-color: rgb(5, 6, 45);
-    padding: 12px 6px;
+    padding: 12px 20px;
     border-radius: 6px;
     transition: 300ms;
 }
-
 .button {
     background-image: none;
     border: 0;

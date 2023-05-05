@@ -1,70 +1,138 @@
-# Getting Started with Create React App
+React.js Final Project Rubric
+Overview
+This sixteen-week project guides students through building a Todo List application with React. There are some basic requirements (see below) but students are encouraged to use their own creativity and ideas to showcase all the skills they have learned throughout the course.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Requirements
+General
+Project is published on public GitHub repository
+Project includes “create-react-app” boilerplate structure
+Project includes necessary dependencies:
+“react-router-dom”
+“prop-types”
+Code compiles without errors
+Code executes without run-time errors in the browser
+(Bonus) Code compiles and runs without warnings
+Project Structure
+Repository includes src/ directory with the following structure:
 
-## Available Scripts
+index.js(application entry-point)
+App.js (root component)
+components/ directory with the following files:
+AddTodoForm.js
+InputWithLabel.js
+TodoList.js
+TodoListItem.js
+(Bonus) TodoContainer.js
+One or more CSS modules associated with the components above
+App Component
+App.js contains the following:
 
-In the project directory, you can run:
+Functional React component named App
+Return statement that renders the following JSX:
+Router from “react-router-dom”
+Switch component with two or more Routes that are navigable
+One route for “home” or “landing” page
+One or more routes which render a TodoList component
+(Bonus) Navigation menu
+TodoContainer Component
+If project is missing (Bonus) TodoContainer.js, then apply these requirements to App.js instead
 
-### `npm start`
+TodoContainer.js contains the following:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Functional React component named TodoContainer with one prop: tableName
+Correct propTypes for the prop(s) listed
+State variable named todoList with default value of an empty Array ([])
+State variable named isLoading with default value of true
+useEffect hook with dependency tableName (prop) and callback function that does the following:
+Using Fetch API, GET table records from Airtable for the given tableName
+Parse JSON response
+Sort response data by one or more properties
+Set todoList state to sorted data
+Set isLoading to false
+Function named addTodo with parameter title that does the following:
+Using Fetch API, POST new record to Airtable with the given title field value
+Parse JSON response
+Set todoList state to new Array containing the added record
+(Bonus) Re-sort list data
+Function named removeTodo with parameter id that does the following:
+Using Fetch API, DELETE record from Airtable given id
+Parse JSON response
+Set todoList state to new Array NOT containing the removed record
+Return statement that renders the following JSX:
+Heading level-one with dynamic tableName
+AddTodoForm Component
+Conditional rendering based on isLoading state:
+If true, paragraph that reads “Loading…” or some equivalent message
+If false, TodoList Component
+AddTodoForm Component
+AddTodoForm.js contains the following:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Functional React component named AddTodoForm with one prop: onAddTodo
+Correct propTypes for the prop(s) listed
+State variable named todoTitle with default value of an empty String ("")
+Function named handleTitleChange with parameter event that does the following:
+Set todoTitle to given value from event
+Function named handleAddTodo with parameter event that does the following:
+Prevent default event behavior (i.e. page refresh)
+Invoke callback prop onAddTodo and pass todoTitle from state
+Reset todoTitle value to an empty String ("")
+Return statement that renders the following JSX:
+Form element with submit event handler
+InputWithLabel Component
+Button element with type “submit”
+InputWithLabel Component
+InputWithLabel.js contains the following:
 
-### `npm test`
+Functional React component named InputWithLabel with three props: todoTitle, handleTitleChange, and children
+Correct propTypes for the prop(s) listed
+Ref for Input element
+useEffect hook with empty dependency list and callback function that does the following:
+Focus input ref
+Return statement that renders the following JSX:
+Label element which renders text from children prop
+Input element which is configured as a “controlled component” with “value” and “onChange” attributes
+TodoList Component
+TodoList.js contains the following:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Functional React component named TodoList with two props: todoList and onRemoveTodo
+Correct propTypes for the prop(s) listed
+Return statement that renders the following JSX:
+Unordered list element
+map statement which loops through todoList Array and returns TodoListItem Component
+TodoListItem Component
+TodoListItem.js contains the following:
 
-### `npm run build`
+Functional React component named TodoListItem with two props: todo and onRemoveTodo
+Correct propTypes for the prop(s) listed
+Return statement that renders the following JSX:
+List-item element
+Title from todo Object
+Button element with text “Remove” and “onClick” event handler
+Styling
+Use of third-party CSS libraries is discouraged for this project, we want to see your understanding of basic CSS concepts like rulesets, properties, and media queries
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Project includes at least one CSS module (though, it is encouraged that you have a different module for each React component)
+Application follows the style requirements outlines below:
+Change the background color of the page body
+Change the default text color
+Customize the font family
+(Bonus) Load in a font family from Google Fonts
+(Bonus) Customize style of navigation items
+Add spacing (padding/margin) between elements
+Change the font size, weight, and color of all headings
+Customize input and button styles
+Use Media Queries to make sure the application is responsive for all device sizes (mobile, tablet, desktop, etc.)
+(Bonus) Add multi-media usage (i.e. iconography)
+Example
+Coming soon…
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Final Project Submission
+Please use your usual Assignment Submission Form to submit your final project when it’s complete. Here’s a quick checklist before you submit:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Double check the rubric to make sure you’ve met requirements
+Merge any remaining open pull requests so your main/master branch of your repository has ALL your final project work
+Select “React.js – Final Project Completion” for the lesson
+Copy and paste the URL for your repository (should look like: www.github.com/yourusername/classname-react) in the field of the Assignment Submission Form that asks for the project link
+Be sure to answer the questions about what you’d like to do after this class. Your options include: participating in practicum, taking another class, retaking this class, work on mini projects, no further action.
+If you are completing your final project and intending to participate in practicum, be sure to complete the Practicum Participation Form that was shared in the class Slack channel as soon as possible.
+Your reviewer will look over your work after you submit. Once they’ve reviewed, you’ll receive an email with any of their comments/feedback and your class completion certificate. If you have any questions or don’t receive this email, please contact the class coordinator.

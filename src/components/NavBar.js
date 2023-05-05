@@ -1,16 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import style from './NavBar.module.css'
+
 
 function NavBar() {
+
   return (
     <div>
       <ul>
-        <li>
-          <a href="/todo-list">To-do list</a>
+        <li className={style.ListItem}>
+          <Link to='/todo-list'>
+        <button className={style.button}>To-do list</button>
+        </Link>
         </li>
       </ul>
       <ul>
-        <li>
-          <a href="/code">GitHub</a>
+        <li className={style.ListItem}>
+           <Link to='https://github.com/Maarimar/react-cockatoo-mariana' target={"_blank"}>
+        <button className={style.button}>Code</button>
+        </Link>
         </li>
       </ul>
     </div>

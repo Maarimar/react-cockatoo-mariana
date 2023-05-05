@@ -1,9 +1,17 @@
+body{
+    background-color: #394867;
+}
 .container{
-    max-width: fit-content;
-    margin: 50px;
-    background-color: #FDE2F3;
-    color: #2A2F4F;
+    
+    color: white;
     align-items: center;
+    text-align: center;
+    padding: 10px;
     
 
 }
+
+p{
+padding-bottom: 10px;
+}
+

@@ -54,9 +54,8 @@ const addTodo = function (newTodo) {
   })
     .then((response) => response.json())
     .then((result) => {
-      setTodoList([...todoList, result.records[0]]);
-   
-    })
+setTodoList([...todoList, result.records[0]]);}
+    )
     .catch((error) => {
       console.error("Error:", error);
     });
@@ -91,10 +90,6 @@ const removeTodo = function (id) {
     } 
   }, [todoList, isLoading]);
 
-  // const removeTodo = (id) => {
-  //   const newTodoList = todoList.filter((todo) => todo.id !== id);
-  //   setTodoList(newTodoList);
-  // };
 
   
 
@@ -103,11 +98,11 @@ const removeTodo = function (id) {
     <Routes>
       <Route path={"/"}
         element={
-          <>
-               <h1>Welcome</h1>
-               <p>Hola esta es mi todo app, es mi proyecto final para coe the dream</p>
-               <NavBar/>
-          </>
+          <div className={style.container} >
+               <h1>Welcome!!!</h1>
+               <p className={style.p}>If you click any of the buttons bellow you can see the Todo list app we created in the class. Feel free to explore the code or experience the app</p>
+               <NavBar className={style.container}/>
+          </div>
         }
       />
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const TodoListItem = ({ todo, onRemoveTodo}) => {
   return (
-      <li className = {style.ListItem} key={todo.id}>{todo.fields.Title} <button  className = {style.x}onClick={()=>onRemoveTodo(todo.id)}>X</button></li>
+      <li className = {style.ListItem} key={todo.id}>{todo.fields.Title} <button className = {style.button}onClick={()=>onRemoveTodo(todo.id)}>done</button></li>
   );
 };
 
